@@ -1,0 +1,40 @@
+
+code{
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', "Courier New", Courier, monospace;
+    font-size: 110%;
+    color: #000000;
+}
+
+code.file{
+    color: #8e4510;
+}
+
+.pcenter{
+    text-align: center;
+}
+
+.example{
+    background-color: hsl(0, 0%, 8%) !important;    
+    border-radius: .5em;
+    border: .3em solid hsl(0, 0%, 33%);
+    box-shadow: 1px 1px .5em black inset;
+    margin: .5em 0;
+    overflow: auto;
+    padding: 0ex 1ex
+}
+
+.example pre {
+    color: white !important;    
+}
+
+span.GAPprompt{
+    color: hsl(218, 22%, 55%) !important;
+    text-shadow:rgb(0, 0, 0) 0px -1.6px 3.2px !important;
+}
+
+span.GAPinput{
+    color:rgb(207, 105, 73) !important; /*red*/
+    /*color:rgb(233, 193, 99) !important;*/ /*yellow*/    
+    text-shadow:rgb(0, 0, 0) 0px -1.6px 3.2px !important;
+    font-weight:bold;
+}

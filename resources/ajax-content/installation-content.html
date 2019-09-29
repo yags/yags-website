@@ -1,0 +1,63 @@
+<h1 class="content-title">Installing <strong class="pkg">YAGS</strong></h1>
+
+<p>If you are fond of <code class="file">git</code> and you already installed <strong class="pkg">GAP</strong>, then you could clone our repository as usual (here we assume that <code class="file">GAP-DIR</code> is your <strong class="pkg">GAP</strong> installation directory):</p>
+
+
+<div class="example"><pre>
+git clone http://github.com/yags/yags.git GAP-DIR/pkg/yags
+</pre></div>
+
+<p>Otherwise, you may follow these installation instructions:</p>
+
+<ol>
+<li><p>Install <strong class="pkg">GAP</strong> following the instructions at <span class="URL"><a target="_blank" href="http://www.gap-system.org/">http://www.gap-system.org/</a></span>.</p>
+
+</li>
+<li><p>Obtain <strong class="pkg">YAGS</strong> from its repository <span class="URL"><a href="https://github.com/yags/yags/archive/master.zip">https://github.com/yags/yags/archive/master.zip</a></span>.</p>
+
+</li>
+<li><p>Unpack <strong class="pkg">YAGS</strong>: the contents of the zip file should go under <code class="file">GAP-DIR/pkg/yags/</code>. Here, we assume that <code class="file">GAP-DIR</code> is your <strong class="pkg">GAP</strong> installation directory.</p>
+
+</li>
+<li><p>Test <strong class="pkg">YAGS</strong> by running <strong class="pkg">GAP</strong>, loading <strong class="pkg">YAGS</strong> and executing a few basic commands in a terminal:</p>
+
+
+<div class="example"><pre>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">gap</span>
+   --- some GAP info here ---
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">RequirePackage("yags");</span>
+
+Loading  YAGS - Yet Another Graph System, Version 0.0.4.
+Copyright (C) 2018 by the YAGS authors; for details type: ?yags:authors
+This is free software under GPLv3; for details type: ?yags:copyright 
+
+true
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">CliqueNumber(Icosahedron);NumberOfCliques(Icosahedron);</span>
+3
+20
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput"></span>
+</pre></div>
+
+</li>
+<li><p>(Optional) Make us happier by sending us a brief installation notification to <span class="URL"><a href="mailto:yags@xamanek.izt.uam.mx">yags@xamanek.izt.uam.mx</a></span> and subscribing to <strong class="pkg">YAGS</strong>'s distribution list: <span class="URL"><a target="_blank" href="http://xamanek.izt.uam.mx/yagsnews/">http://xamanek.izt.uam.mx/yagsnews/</a></span></p>
+
+</li>
+</ol>
+<p>Did it work? Congratulations! Otherwise, consider the following troubleshooting issues:</p>
+
+
+<ul>
+<li><p><strong class="button">Is </strong><strong class="pkg">GAP</strong><strong class="button"> working?</strong><br /> Make sure it is. Follow carefully <strong class="pkg">GAP</strong>'s installation and troubleshooting procedures.</p>
+
+</li>
+<li><p><strong class="button">Is the installation directory correct?</strong><br /> The <em><strong class="pkg">GAP</strong>'s installation directory</em>, <code class="file">GAP-DIR</code>, is typically something like <code class="file">/opt/gap4r8/</code> (in MS Windows it may look like <code class="file">C:\gap4r8\</code>). If this is the case, the <em><strong class="pkg">YAGS</strong>'s installation directory</em>, <code class="file">YAGS-DIR</code>, is <code class="file">/opt/gap4r8/pkg/yags/</code> (in MS Windows, it would be <code class="file">C:\gap4r8\pkg\yags\</code>). Then, the full path for <strong class="pkg">YAGS</strong>'s info file <code class="file">PackageInfo.g</code> should be <code class="file">/opt/gap4r8/pkg/yags/PackageInfo.g</code> (or <code class="file">C:\gap4r8\pkg\yags\PackageInfo.g</code>)</p>
+
+</li>
+<li><p><strong class="button">Are you using </strong><strong class="pkg">GRAPE</strong><strong class="button">?</strong><br /> <strong class="pkg">GRAPE</strong> and <strong class="pkg">YAGS</strong> are incompatible: they can not be loaded at the same time. If you had an initialization file that loads <strong class="pkg">GRAPE</strong> automatically, you should disable it in order to use <strong class="pkg">YAGS</strong>. Alternatively, the command <code class="file">gap -r</code> starts gap disabling any user-specific configuration files.</p>
+
+</li>
+<li><p><strong class="button">Unauthorized to access </strong><strong class="pkg">GAP</strong><strong class="button">'s directories?</strong><br /> The installation procedure above assumed that you have full access to your computer (i.e. that you are the root of the system or that you are using your PC or Mac). If this is not the case, you can also install <strong class="pkg">YAGS</strong> under your user directory. For instance, if your user directory is <code class="file">/home/joe/</code> then you can create a subdirectory <code class="file">/home/joe/gaplocal/</code> and hence your <strong class="pkg">YAGS</strong>'s installation directory will be <code class="file">/home/joe/gaplocal/pkg/yags/</code>. Then you can start <strong class="pkg">GAP</strong> using <code class="file">gap -l ";/home/joe/gaplocal"</code> so that <strong class="pkg">GAP</strong> knows where your <strong class="pkg">YAGS</strong> is.</p>
+
+</li>
+</ul>
+<p><a id="X875B75517E6E6576" name="X875B75517E6E6576"></a></p>

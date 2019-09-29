@@ -1,0 +1,101 @@
+<!-- The Modal -->
+<div class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="modal-close">×</span>
+      <h2>Example: clique graphs</h2>
+    </div>
+    <div class="modal-body">
+
+
+          <p>Whenever we have a graph <span class="SimpleMath">G</span>, we can compute its clique graph <span class="SimpleMath">K(G)</span>, which is the intersection graph of the cliques of <span class="SimpleMath">G</span>.<p/>
+
+
+<div class="example"><pre>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">g:=RandomGraph(80);;     </span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">kg:=CliqueGraph(g);;time;</span>
+26499
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">kg2:=CliqueGraph(g);;time;</span>
+0</pre></div>
+
+
+          <p>We can limit the maximum number of cliques to be computed in <code class="code">Cliques</code> and <code class="code">CliqueGraph</code> using the optional extra parameter <var class="Arg">maxNumCli</var>: with this extra parameter, the computation is aborted when the number of computed cliques reaches <var class="Arg">maxNumCli</var>.</p>
+
+
+<div class="example"><pre>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">g:=OctahedralGraph(3);; </span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">CliqueGraph(g,1000); </span>
+Graph( Category := SimpleGraphs, Order := 8, Size := 
+24, Adjacencies := [ [ 2, 3, 4, 5, 6, 7 ], [ 1, 3, 4, 5, 6, 8 ], 
+  [ 1, 2, 4, 5, 7, 8 ], [ 1, 2, 3, 6, 7, 8 ], [ 1, 2, 3, 6, 7, 8 ], 
+  [ 1, 2, 4, 5, 7, 8 ], [ 1, 3, 4, 5, 6, 8 ], [ 2, 3, 4, 5, 6, 7 ] ] )
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">g:=OctahedralGraph(30);; #this has 2^30=1073741824 cliques.</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">CliqueGraph(g,1000);                            </span>
+fail</pre></div>
+
+
+          <p>Iterated clique graphs are obtained by applying the clique operator several times.</p>
+
+<div class="example"><pre>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">K:=CliqueGraph;</span>
+&lt;Attribute "CliqueGraph"&gt;
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">g:=Icosahedron;;Order(g); </span>
+12
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">kg:=K(g);;Order(kg);          </span>
+20
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">k2g:=K(kg);;Order(k2g);</span>
+32
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">k3g:=K(k2g);;Order(k3g);</span>
+92
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">k4g:=K(k3g);;Order(k4g);</span>
+472
+</pre></div>
+
+
+          <p>In the previous code, we may wonder which vertices of <span class="SimpleMath">K^3(g)</span> constitute the clique corresponding to some vertex of <span class="SimpleMath">K^4(g)</span>, this can be settled using <code class="code">VertexNames</code>. </p>
+
+
+
+<div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">VertexNames(kg)[1];VertexNames(kg)[3];  </span>
+[ 1, 2, 3 ]
+[ 1, 3, 4 ]          
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">VertexNames(k4g)[2];VertexNames(k4g)[9];</span>
+[ 1, 2, 55, 72, 73, 74, 80, 81, 82, 83, 84, 85, 88, 89, 90 ]
+[ 1, 2, 3, 4, 10, 16, 81, 82, 85, 87, 88, 89 ]</pre></div>
+
+
+
+          <p>But what if in the previous code we want to know which vertices of <span class="SimpleMath">g</span> constitute some vertex of <span class="SimpleMath">K^4(g)</span>? This could be done using <code class="code">VertexNames</code> at level <span class="SimpleMath">K^4(g)</span> and then transforming each of the obtained vertices (in <span class="SimpleMath">K^3(g)</span>) using <code class="code">VertexNames</code> of <span class="SimpleMath">K^3(g)</span> and so on... but <strong class="pkg">YAGS</strong> already has an operation that does exactly that. The <em>basement</em> of a vertex <span class="SimpleMath">x</span> of an iterated clique graph <span class="SimpleMath">K^n(g)</span> with respect to some previous iterated clique graph <span class="SimpleMath">K^m(g)</span> (with <span class="SimpleMath">m≤ n</span>) is, roughly speaking, the set of vertices of <span class="SimpleMath">K^m(g)</span> that constitute the vertex <span class="SimpleMath">x</span>, that is, the set of vertices of <span class="SimpleMath">K^m(g)</span> which are needed for <span class="SimpleMath">x</span> to exist.</p>
+
+
+<div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">VertexNames(kg)[1];VertexNames(kg)[3];  </span>
+[ 1, 2, 3 ]
+[ 1, 3, 4 ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Basement(g,kg,1);Basement(g,kg,3);        </span>
+[ 1, 2, 3 ]
+[ 1, 3, 4 ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">VertexNames(k4g)[2];VertexNames(k4g)[9];</span>
+[ 1, 2, 55, 72, 73, 74, 80, 81, 82, 83, 84, 85, 88, 89, 90 ]
+[ 1, 2, 3, 4, 10, 16, 81, 82, 85, 87, 88, 89 ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Basement(k3g,k4g,2);Basement(k3g,k4g,9);</span>
+[ 1, 2, 55, 72, 73, 74, 80, 81, 82, 83, 84, 85, 88, 89, 90 ]
+[ 1, 2, 3, 4, 10, 16, 81, 82, 85, 87, 88, 89 ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Basement(k2g,k4g,9);</span>
+[ 1, 2, 3, 4, 5, 6, 7, 17, 19, 24, 25, 27, 28, 29, 30, 31 ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Basement(kg,k4g,9); </span>
+[ 1, 2, 3, 4, 5, 7, 8, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Basement(g,k4g,9); </span>
+[ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 ]</pre></div>
+
+          <br/>
+          <br/>
+   
+    </div>
+    <div class="modal-footer">
+      <h2>Example: clique graphs</h2>
+    </div>
+  </div>
+
+</div>

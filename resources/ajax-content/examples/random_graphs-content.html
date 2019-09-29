@@ -1,0 +1,38 @@
+<!-- The Modal -->
+<div class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="modal-close">×</span>
+      <h2>Example: random graphs</h2>
+    </div>
+    <div class="modal-body">
+
+          
+          <p><strong class="pkg">YAGS</strong> knows about random graphs, so you can take some random graphs and study their parameters. Furthermore, <code class="func">GraphAttributeStatistics</code> (<a target="_blank" href="documentation.html?chapter=chapB&hash=X84BA39B986A7A8F7"><span class="RefLink">B.7-4</span></a>) can collect statistics on 100 random graphs at a time returning the collected results of the specified graph parameter on these graphs. The following experiments show, for instance that the values of the minimum degree parameter are much more spread than those of the clique number or those of the diameter.</p>
+
+
+<div class="example"><pre>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">MinDeg:=function(G) return Minimum(VertexDegrees(G)); end;;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">g:=RandomGraph(30,1/2);; MinDeg(g); CliqueNumber(g); Diameter(g);</span>
+9
+6
+2
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">GraphAttributeStatistics(30,1/2,MinDeg);</span>
+[ [ 5, 1 ], [ 6, 2 ], [ 7, 6 ], [ 8, 22 ], [ 9, 30 ], [ 10, 30 ], 
+  [ 11, 5 ], [ 12, 4 ] ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">GraphAttributeStatistics(30,1/2,CliqueNumber);</span>
+[ [ 5, 2 ], [ 6, 70 ], [ 7, 24 ], [ 8, 4 ] ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">GraphAttributeStatistics(30,1/2,Diameter);    </span>
+[ [ 2, 91 ], [ 3, 9 ] ]
+</pre></div>
+
+   
+    </div>
+    <div class="modal-footer">
+      <h2>Example: random graphs</h2>
+    </div>
+  </div>
+
+</div>

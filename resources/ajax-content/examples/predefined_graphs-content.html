@@ -1,0 +1,72 @@
+<!-- The Modal -->
+<div class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="modal-close">×</span>
+      <h2>Example: predefined graphs</h2>
+    </div>
+    <div class="modal-body">
+
+
+          
+          <p>There are a lot of predefined graphs (the full list can be consulted in Appendix <a target="_blank" href="documentation.html?chapter=chapA&hash=X82B05AAB844DD947"><span>A.4</span></a>):</p>
+
+<div class="example"><pre>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">PathGraph(5);CycleGraph(6);CompleteGraph(5); </span>
+Graph( Category := SimpleGraphs, Order := 5, Size := 
+4, Adjacencies := [ [ 2 ], [ 1, 3 ], [ 2, 4 ], [ 3, 5 ], [ 4 ] ] )
+Graph( Category := SimpleGraphs, Order := 6, Size := 
+6, Adjacencies := [ [ 2, 6 ], [ 1, 3 ], [ 2, 4 ], [ 3, 5 ], [ 4, 6 ], 
+  [ 1, 5 ] ] )
+Graph( Category := SimpleGraphs, Order := 5, Size := 
+10, Adjacencies := [ [ 2, 3, 4, 5 ], [ 1, 3, 4, 5 ], [ 1, 2, 4, 5 ], 
+  [ 1, 2, 3, 5 ], [ 1, 2, 3, 4 ] ] )
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">CompleteBipartiteGraph(3,3);TreeGraph([2,2,2]);</span>
+Graph( Category := SimpleGraphs, Order := 6, Size := 
+9, Adjacencies := [ [ 4, 5, 6 ], [ 4, 5, 6 ], [ 4, 5, 6 ], 
+  [ 1, 2, 3 ], [ 1, 2, 3 ], [ 1, 2, 3 ] ] )
+Graph( Category := SimpleGraphs, Order := 15, Size := 
+14, Adjacencies := [ [ 2, 3 ], [ 1, 4, 5 ], [ 1, 6, 7 ], [ 2, 8, 9 ], 
+  [ 2, 10, 11 ], [ 3, 12, 13 ], [ 3, 14, 15 ], [ 4 ], [ 4 ], [ 5 ], 
+  [ 5 ], [ 6 ], [ 6 ], [ 7 ], [ 7 ] ] )
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Octahedron;ParapluieGraph;</span>
+Graph( Category := SimpleGraphs, Order := 6, Size := 
+12, Adjacencies := [ [ 3, 4, 5, 6 ], [ 3, 4, 5, 6 ], [ 1, 2, 5, 6 ], 
+  [ 1, 2, 5, 6 ], [ 1, 2, 3, 4 ], [ 1, 2, 3, 4 ] ] )
+Graph( Category := SimpleGraphs, Order := 7, Size := 
+9, Adjacencies := [ [ 2 ], [ 1, 3 ], [ 2, 4, 5, 6, 7 ], [ 3, 5 ], 
+  [ 3, 4, 6 ], [ 3, 5, 7 ], [ 3, 6 ] ] )
+</pre></div>
+
+
+          
+          <p>We have found that <code class="func">GraphByWalks</code> (<a target="_blank" href="documentation.html?chapter=chapB&hash=X790CBDC282E6FEA1">B.7-11</a>) is one of the most useful and versatile ways of specifying graphs:</p>
+
+
+<div class="example"><pre>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">p5:=PathGraph(5);;c6:=CycleGraph(6);;w4:=WheelGraph(4);;  </span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">IsIsomorphicGraph(p5,GraphByWalks([1..5]));</span>
+true
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">IsIsomorphicGraph(c6,GraphByWalks([1,2,3,4,5,6,1]));</span>
+true
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">IsIsomorphicGraph(c6,GraphByWalks([1..6],[6,1]));   </span>
+true
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">IsIsomorphicGraph(w4,GraphByWalks([1,[2,3,4,5,2]]));</span>
+true
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">sd:=GraphByWalks([1,[2,3,4,5],6],[5,[6,7,8,1],2]);; </span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">IsIsomorphicGraph(SnubDisphenoid,sd);</span>
+true
+</pre></div>
+
+          <br/>
+          <br/>
+   
+    </div>
+    <div class="modal-footer">
+      <h2>Example: predefined graphs</h2>
+    </div>
+  </div>
+
+</div>
